@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Satoru Store - Funkos</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f4f4f4;
+      color: #333;
+      display: flex; /* Enable flexbox for layout */
+    }
+
+    .sidebar {
+      height: 100vh;
+      width: 200px;
+      position: fixed;
+      background-color: #1e1e2f;
+      padding-top: 20px;
+      box-shadow: 2px 0 10px rgba(0, 0, 0, 0.2);
+      z-index: 10; /* Ensure sidebar is above content */
+    }
+
+    .sidebar a {
+      display: block;
+      color: white;
+      padding: 15px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: background-color 0.3s ease;
+    }
+
+    .sidebar a:hover {
+      background-color: #3a3a5a;
+    }
+
+    .content {
+      margin-left: 200px; /* Push content to the right by the sidebar's width */
+      padding: 40px;
+      background-color: #ffffff;
+      min-height: 100vh;
+      flex-grow: 1; /* Allow content to take remaining width */
+    }
+
+    h1 {
+      font-size: 36px;
+      color: #0056b3;
+      margin-bottom: 20px;
+      text-shadow: 1px 1px 2px #aaa;
+    }
+
+    h2 {
+      font-size: 24px;
+      color: #333;
+      margin-top: 30px;
+      margin-bottom: 10px;
+      border-left: 5px solid #0056b3;
+      padding-left: 10px;
+    }
+
+    p {
+      font-size: 18px;
+      line-height: 1.6;
+      color: #444;
+      margin-bottom: 20px;
+    }
+
+    img {
+      width: 100%;
+      max-width: 1045px;
+      height: auto;
+      margin-bottom: 30px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    .funko-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Adjusted min-width for description */
+      gap: 20px;
+      margin-top: 20px;
+    }
+
+    .funko {
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      padding: 15px;
+      text-align: center;
+      transition: transform 0.2s ease-in-out;
+      border: 1px solid #bbdefb; /* Borde azul claro */
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .funko:hover {
+      transform: scale(1.03);
+      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .funko img {
+      max-width: 150px; /* Slightly larger image */
+      height: auto;
+      margin-bottom: 10px;
+      border-radius: 5px;
+    }
+
+    .funko h3 {
+      margin-top: 0;
+      margin-bottom: 5px;
+      font-size: 1.2rem;
+      color: #37474f;
+    }
+
+    .funko .description {
+      font-size: 0.9rem;
+      color: #555;
+      margin-bottom: 10px;
+      text-align: left; /* Align description to the left for better readability */
+    }
+
+    .funko .price {
+      font-weight: bold;
+      color: #1a237e; /* Azul marino for price */
+      margin-bottom: 10px;
+    }
+
+    .funko button {
+      background-color: #3f51b5; /* Azul más oscuro */
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background-color 0.3s ease;
+    }
+
+    .funko button:hover {
+      background-color: #283593; /* Azul marino más intenso en hover */
+    }
+  </style>
+</head>
+<body>
+  
+  <div class="sidebar">
+    <a href="uwu.html">¿QUIÉNES SOMOS?</a>
+    <a href="pops.html">Pop's</a>
+    <a href="Pagina Martha.html">Promociones</a>
+    <a href="ejem.html">Encuéntranos</a>
+  </div>
+
+  <div class="content">
+    <p><a href="uwu.html">Inicio</a> / <a href="pops.html" >Pop's</a></p>
+    <h1>Pop's</h1>
+    <p>Figuras coleccionables de la marca Funko. Los Funko pop son los juguetes de vinilo que mas se han vendido.</p>
+    <section id="jujutsu">
+      <h2>Funkos de Jujutsu Kaisen</h2>
+      <div class="funko-grid" id="jujutsu-funkos"></div>
+    </section>
+
+    <section id="kimetsu">
+      <h2>Funkos de Kimetsu no Yaiba</h2>
+      <div class="funko-grid" id="kimetsu-funkos"></div>
+    </section>
+
+    <section id="minecraft">
+      <h2>Funkos de Minecraft</h2>
+      <div class="funko-grid" id="minecraft-funkos"></div>
+    </section>
+  </div>
+
+  <script>
+    function generarFunko(contenedorId, nombre, precio, imagenSrc, descripcion) {
+      const contenedor = document.getElementById(contenedorId);
+      const divFunko = document.createElement('div');
+      divFunko.classList.add('funko');
+      divFunko.innerHTML = `
+        <img src="${imagenSrc}" alt="${nombre}">
+        <h3>${nombre}</h3>
+        <p class="description">${descripcion}</p>
+        <p class="price">Precio: $${precio.toFixed(2)}</p>
+        <button>Seleccionar</button>
+      `;
+      contenedor.appendChild(divFunko);
+    }
+
+    // Datos de los Funkos con URLs de imágenes y descripciones
+    const jujutsuFunkos = [
+      { nombre: 'Funko JJK Gojo Satoru', precio: 290.00, url: 'https://rec-line.com/img/productos/467x467/889698613576.jpeg', descripcion: 'El hechicero más fuerte con sus poderosos ojos Six Eyes.' },
+      { nombre: 'Funko JJK Yuji Itadori', precio: 250.00, url: 'https://d14d9vp3wdof84.cloudfront.net/image/589816272436/image_16mnk903bl659fq997c3ha485s/-S897-FWEBP', descripcion: 'El recipiente de Ryomen Sukuna con una determinación inquebrantable.' },
+      { nombre: 'Funko JJK Megumi Fushiguro', precio: 260.50, url: 'https://www.baselunaitaly.it/wp-content/uploads/2025/02/Megumi-with-rabbit.png', descripcion: 'Un talentoso hechicero que utiliza poderosas técnicas de invocación.' },
+      { nombre: 'Funko JJK Nobara Kugisaki', precio: 275.25, url: 'https://www.distritomax.com/cdn/shop/files/9a44348d560f446dbc6f67d38baf265fxl_700x700.jpg?v=1740157739', descripcion: 'Una hechicera de carácter fuerte que lucha con martillo y clavos imbuidos de energía maldita.' },
+      { nombre: 'Funko JJK Sukuna', precio: 305.75, url: 'https://m.media-amazon.com/images/I/71-M0eCb5iL.jpg', descripcion: 'El Rey de las Maldiciones, una entidad poderosa y temida.' },
+    ];
+
+    const kimetsuFunkos = [
+      { nombre: 'Funko KNY Tanjiro Kamado', precio: 230.00, url: 'https://limitededition.mx/cdn/shop/files/4f305605-3d3a-4c49-be7b-f6780c5f2486_1024x1024.jpg?v=1742334647', descripcion: 'Un joven determinado a vengar a su familia y curar a su hermana.' },
+      { nombre: 'Funko KNY Nezuko Kamado', precio: 245.50, url: 'https://m.media-amazon.com/images/I/815m3M0yboL.jpg', descripcion: 'La hermana de Tanjiro, transformada en demonio pero con una fuerte voluntad humana.' },
+      { nombre: 'Funko KNY Zenitsu Agatsuma', precio: 255.25, url: 'https://m.media-amazon.com/images/I/81LID2dLMeL.jpg', descripcion: 'Un cazador de demonios cobarde pero poderoso cuando está inconsciente.' },
+      { nombre: 'Funko KNY Inosuke Hashibira', precio: 265.00, url: 'https://m.media-amazon.com/images/I/71WAJ50KQnL.jpg', descripcion: 'Un cazador de demonios salvaje que lucha con dos espadas.' },
+      { nombre: 'Funko KNY Giyu Tomioka', precio: 270.75, url: 'https://m.media-amazon.com/images/I/71o9gUGEMKL.jpg', descripcion: 'Un poderoso Hashira de Agua con una personalidad reservada.' },
+    ];
+
+    const minecraftFunkos = [
+      { nombre: 'Funko Minecraft Steve', precio: 220.00, url: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQDwNpcTEPIhD8tkfVAAi76C2YgpPLx1HEiJw&s', descripcion: 'El personaje jugador predeterminado, listo para la aventura y la construcción.' },
+      { nombre: 'Funko Minecraft Creeper', precio: 235.50, url: 'https://http2.mlstatic.com/D_NQ_NP_818682-MLM53884349772_022023-O.webp', descripcion: 'La criatura explosiva que acecha a los jugadores desprevenidos.' },
+      { nombre: 'Funko Minecraft Skeleton', precio: 250.25, url: 'https://cdn.gameplanet.com/wp-content/uploads/2022/09/02012957/funko-pop-minecraft-skeleton-02.jpg', descripcion: 'Una criatura nocturna de Huesos que Lanza Flechas con su Arco.' },
+      { nombre: 'Funko Minecraft Alex', precio: 225.00, url: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSwZzQYKGGR2DPTMNwK26T5T9KqoqaIuw-Gcw&s', descripcion: 'Otro personaje jugador común, a menudo visto con trenzas rojas.' },
+      { nombre: 'Funko Minecraft Pig', precio: 210.75, url: 'https://m.media-amazon.com/images/I/81iVWPHZr9L.jpg', descripcion: 'Una fuente común de alimento en el mundo de Minecraft.' },
+    ];
+
+    // Generar los Funkos dinámicamente utilizando los datos
+    jujutsuFunkos.forEach(funko => generarFunko('jujutsu-funkos', funko.nombre, funko.precio, funko.url, funko.descripcion));
+    kimetsuFunkos.forEach(funko => generarFunko('kimetsu-funkos', funko.nombre, funko.precio, funko.url, funko.descripcion));
+    minecraftFunkos.forEach(funko => generarFunko('minecraft-funkos', funko.nombre, funko.precio, funko.url, funko.descripcion));
+  </script>
+</body>
+</html>
