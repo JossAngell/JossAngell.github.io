@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+    <script src="https://www.paypal.com/sdk/js?client-id=sb&currency=MXN"></script>
+
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Satoru Store - Funkos</title>
@@ -218,5 +220,102 @@
     kimetsuFunkos.forEach(funko => generarFunko('kimetsu-funkos', funko.nombre, funko.precio, funko.url, funko.descripcion));
     minecraftFunkos.forEach(funko => generarFunko('minecraft-funkos', funko.nombre, funko.precio, funko.url, funko.descripcion));
   </script>
+  <div id="carrito" style="
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: white;
+  border: 1px solid #ccc;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+  padding: 15px;
+  width: 300px;
+  max-height: 80vh;
+  overflow-y: auto;
+  border-radius: 8px;
+  z-index: 999;
+">
+  <h2 style="margin-top: 0;">🛒 Carrito</h2>
+  <ul id="carrito-items" style="list-style: none; padding-left: 0;"></ul>
+  <p><strong>Total: $<span id="carrito-total">0.00</span></strong></p>
+<div style="margin-top: 15px;">
+    <button id="btn-vaciar" onclick="vaciarCarrito()" style="display: none; background: #c62828; color: white; border: none; padding: 10px; width: 100%; margin-bottom: 10px; border-radius: 5px; cursor: pointer;">
+        🗑 Borrar 
+    </button>
+    <div id="paypal-button-container"></div>
+  </div>
+  
+<script>
+  const carrito = [];
+  const carritoItems = document.getElementById('carrito-items');
+  const carritoTotal = document.getElementById('carrito-total');
+
+  document.querySelectorAll('.funko button').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const funkoElement = btn.closest('.funko');
+      const nombre = funkoElement.querySelector('h3').textContent;
+      const precio = parseFloat(funkoElement.querySelector('.price').textContent.replace('Precio: $', ''));
+      agregarAlCarrito({ nombre, precio });
+    });
+  });
+
+  function agregarAlCarrito(producto) {
+    carrito.push(producto);
+    actualizarCarrito();
+  }
+
+  function eliminarDelCarrito(index) {
+    carrito.splice(index,1);
+    actualizarCarrito();
+  }
+
+  function actualizarCarrito() {
+    carritoItems.innerHTML = '';
+    let total = 0;
+    carrito.forEach((producto, index) => {
+      total += producto.precio;
+      const li = document.createElement('li');
+      li.innerHTML = `${producto.nombre} - $${producto.precio.toFixed(2)} <button onclick="eliminarDelCarrito(${index})" style="float: right; background: red; color: white; border: none; border-radius: 4px; padding: 2px 6px; cursor: pointer;">X</button>`;
+      carritoItems.appendChild(li);
+      document.getElementById('btn-vaciar').style.display = carrito.length >= 2 ? 'block' : 'none';
+    });
+    carritoTotal.textContent = total.toFixed(2);
+document.getElementById('paypal-button-container').innerHTML = '';
+if (carrito.length > 0) {
+  cargarBotonPayPal();
+}
+
+  }
+  
+  function vaciarCarrito() {
+  carrito.length = 0;
+  actualizarCarrito();
+}
+
+// PayPal SDK
+function cargarBotonPayPal() {
+  if (typeof paypal !== "undefined") {
+    paypal.Buttons({
+      createOrder: function(data, actions) {
+        return actions.order.create({
+          purchase_units: [{
+            amount: {
+              value: carrito.reduce((sum, item) => sum + item.precio, 0).toFixed(2)
+            }
+          }]
+        });
+      },
+      onApprove: function(data, actions) {
+        return actions.order.capture().then(function(details) {
+          alert('¡Gracias por tu compra, ' + details.payer.name.given_name + '!');
+          vaciarCarrito();
+        });
+      }
+    }).render('#paypal-button-container');
+  }
+}
+
+</script>
+
+  
 </body>
 </html>
