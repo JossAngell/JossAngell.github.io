@@ -45,12 +45,12 @@ nav a:hover {
 
 .content {
   padding: 100px 40px 40px 40px;
- /* top padding adjusted for header */
   background-color: #ffffff;
   max-width: 1045px;
   margin: 0 auto;
   min-height: 100vh;
 }
+
 
 h1 {
   font-size: 36px;
@@ -85,19 +85,67 @@ img {
 }
 .sidebar {
   width: 100%;
-  height: auto;
+  height: 45px;
   position: fixed;
   top: 0;
   left: 0;
   background-color: #1e1e2f;
   display: flex;
-  justify-content: center;
+  align-items: center;
+  justify-content: space-around;
+  padding: 5px 30px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
   z-index: 10;
 }
+.sidebar-links {
+  display: flex;
+  gap: 5px; /* Espacio mínimo entre los links */
+}
+
+.logo {
+  height: 40px;
+  width: auto;
+}
+.logo {
+  height: 50px;
+  width: auto;
+  max-width: 160px;
+  object-fit: contain;
+  margin: 0; /* Elimina márgenes que desalinean */
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-right: 450px; /* Empuja los links hacia la derecha */
+}
+
+.logo,
+.extra-logo {
+  height: 45px;
+  width: auto;
+  max-width: 100px;
+  object-fit: contain;
+  margin: 0;
+}
 
 .sidebar a {
-  display: inline-block;
+  color: white;
+  padding: 8px 12px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+
+.sidebar a:hover {
+  background-color: #3a3a5a;
+  border-radius: 5px;
+}
+
+
+.sidebar a {
   color: white;
   padding: 15px 20px;
   text-decoration: none;
@@ -113,12 +161,19 @@ img {
 </head>
 <body>
 
-  <div class="sidebar">
+ <div class="sidebar">
+  <div class="logo-container">
+    <img src="LOGO.png" alt="Logo" class="logo">
+    <img src="Empresa.png" alt="Extra" class="extra-logo">
+  </div>
+  <div class="sidebar-links">
     <a href="index.html">¿QUIÉNES SOMOS?</a>
     <a href="pops.html">Pop's</a>
     <a href="Pagina Martha.html">Promociones</a>
     <a href="ejem.html">Encuéntranos</a>
   </div>
+</div>
+
   
 
 <div class="content">
