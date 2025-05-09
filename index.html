@@ -44,7 +44,8 @@ nav a:hover {
 }
 
 .content {
-  padding: 100px 40px 40px 40px; /* top padding adjusted for header */
+  padding: 100px 40px 40px 40px;
+ /* top padding adjusted for header */
   background-color: #ffffff;
   max-width: 1045px;
   margin: 0 auto;
@@ -82,18 +83,43 @@ img {
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
+.sidebar {
+  width: 100%;
+  height: auto;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: #1e1e2f;
+  display: flex;
+  justify-content: center;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  z-index: 10;
+}
+
+.sidebar a {
+  display: inline-block;
+  color: white;
+  padding: 15px 20px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.sidebar a:hover {
+  background-color: #3a3a5a;
+}
+
 </style>
 </head>
 <body>
 
-<header>
-  <nav>
+  <div class="sidebar">
     <a href="index.html">¿QUIÉNES SOMOS?</a>
     <a href="pops.html">Pop's</a>
     <a href="Pagina Martha.html">Promociones</a>
     <a href="ejem.html">Encuéntranos</a>
-  </nav>
-</header>
+  </div>
+  
 
 <div class="content">
   <img src="file:///C:/Users/angel/Pictures/Screenshots/Captura%20de%20pantalla%202025-04-29%20133928.png" alt="intro">
