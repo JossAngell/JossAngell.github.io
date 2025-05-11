@@ -178,7 +178,87 @@
   display: flex;
   gap: 5px;
 }
+/* Estilos para el pie de página */
+.footer {
+  background-color: #1e1e2f;
+  color: #ffffff;
+  padding: 40px 20px 20px 20px;
+  font-family: 'Poppins', sans-serif;
+}
 
+.footer-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.footer-column {
+  flex: 1 1 200px;
+  margin: 20px;
+}
+
+.footer-column h3,
+.footer-column h4 {
+  color: #ffbd59;
+  margin-bottom: 15px;
+}
+
+.footer-column ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-column ul li {
+  margin-bottom: 10px;
+}
+
+.footer-column ul li a {
+  color: #ffffff;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.footer-column ul li a:hover {
+  color: #e3665d;
+}
+
+.social-icons a {
+  color: #ffffff;
+  margin-right: 10px;
+  font-size: 20px;
+  transition: color 0.3s;
+}
+
+.social-icons a:hover {
+  color: #ffbd59;
+}
+
+.footer-bottom {
+  text-align: center;
+  margin-top: 20px;
+  border-top: 1px solid #444444;
+  padding-top: 10px;
+  font-size: 14px;
+  color: #bbbbbb;
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+  .footer-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .footer-column {
+    margin: 10px 0;
+    text-align: center;
+  }
+}
+.content {
+  padding-bottom: 100px; /* Aumenta el espacio debajo del contenido */
+}
   </style>
 </head>
 <body>
@@ -355,7 +435,42 @@ function cargarBotonPayPal() {
 }
 
 </script>
+<footer class="footer">
+  <div class="footer-container">
+    <div class="footer-column">
+      <h3>FunkoX por Ángel y Karina</h3>
+      <p>Tu tienda de confianza para coleccionistas de Funko Pop en México.</p>
+    </div>
+    <div class="footer-column">
+  <h4>Categorías</h4>
+  <ul>
+    <li><a href="pops.html#jujutsu">Jujutsu</a></li>
+    <li><a href="pops.html#kimetsu">Kimetsu</a></li>
+    <li><a href="pops.html#minecraft">Minecraft</a></li>
+  </ul>
+</div>
 
+    <div class="footer-column">
+      <h4>Enlaces</h4>
+      <ul>
+        <li><a href="index.html">¿Quiénes somos?</a></li>
+        <li><a href="pops.html">Pop's</a></li>
+        <li><a href="Pagina Martha.html">Promociones</a></li>
+        <li><a href="ejem.html">Encuéntranos</a></li>
+      </ul>
+    </div>
+    <div class="footer-column">
+      <h4>Síguenos</h4>
+     <ul>
+        <li><a href="https://www.instagram.com/o.joseangelhenandez?igsh=NWE2Z21nMGJlNDh5">Instagram</a></li>
+        <li><a href="https://www.facebook.com/share/16WA8nLiBR/?mibextid=qi2Omg" >Facebook</a></li>
+    </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2025 FunkoX por Ángel y Karina. Todos los derechos reservados.</p>
+  </div>
+</footer>
   
 </body>
 </html>
