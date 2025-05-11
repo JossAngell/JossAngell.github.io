@@ -1,185 +1,392 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <title>Promociones - FunkoX</title>
+    <script src="https://www.paypal.com/sdk/js?client-id=sb&currency=MXN"></script>
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Satoru Store - Funkos</title>
   <style>
     body {
       margin: 0;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background-color: #f4f4f4;
       color: #333;
+      display: flex; /* Enable flexbox for layout */
     }
 
     .sidebar {
-      height: 100vh;
-      width: 200px;
-      position: fixed;
-      background-color: #1e1e2f;
-      padding-top: 20px;
-      box-shadow: 2px 0 10px rgba(0, 0, 0, 0.2);
-    }
+  width: 100%;
+  height: auto;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: #1e1e2f;
+  display: flex;
+  justify-content: center;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  z-index: 10;
+}
 
-    .sidebar a {
-      display: block;
-      color: white;
-      padding: 15px;
-      text-decoration: none;
-      font-weight: bold;
-      transition: background-color 0.3s ease;
-    }
+
+.sidebar a {
+  display: inline-block;
+  color: white;
+  padding: 15px 20px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
 
     .sidebar a:hover {
       background-color: #3a3a5a;
     }
 
     .content {
-      margin-left: 200px;
-      padding: 40px;
-      background-color: #ffffff;
-      min-height: 100vh;
-    }
+  margin-left: 0;
+  padding-top: 80px; /* deja espacio para el menú superior */
+  padding-left: 40px;
+  padding-right: 40px;
+  background-color: #ffffff;
+  min-height: 100vh;
+  flex-grow: 1;
+}
 
     h1 {
       font-size: 36px;
-      color: #0056b3;
-      margin-bottom: 30px;
+      color: #e3665d;
+      margin-bottom: 20px;
       text-shadow: 1px 1px 2px #aaa;
     }
 
-    .promo-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
+    h2 {
+      font-size: 24px;
+      color: #333;
+      margin-top: 30px;
+      margin-bottom: 10px;
+      border-left: 5px solid #e3665d;
+      padding-left: 10px;
     }
 
-    .promo-card {
-      background-color: #fff;
-      border-radius: 10px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-      overflow: hidden;
-      transition: transform 0.3s;
-    }
-
-    .promo-card:hover {
-      transform: scale(1.03);
-    }
-
-    .promo-card img {
-      width: 100%;
-      height: auto;
-    }
-
-    .promo-card .info {
-      padding: 15px;
-    }
-
-    .promo-card .info h2 {
-      font-size: 20px;
-      color: #0056b3;
-      margin: 0 0 10px;
-    }
-
-    .promo-card .info p {
-      font-size: 16px;
+    p {
+      font-size: 18px;
+      line-height: 1.6;
       color: #444;
+      margin-bottom: 20px;
     }
 
-    .promo-card .info span {
-      font-weight: bold;
-      color: #d32f2f;
+    img {
+      width: 100%;
+      max-width: 1045px;
+      height: auto;
+      margin-bottom: 30px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
     }
+
+    .funko-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Adjusted min-width for description */
+      gap: 20px;
+      margin-top: 20px;
+    }
+
+    .funko {
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      padding: 15px;
+      text-align: center;
+      transition: transform 0.2s ease-in-out;
+      border: 1px solid #bbdefb; /* Borde azul claro */
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+
+    }
+
+    .funko:hover {
+      transform: scale(1.03);
+      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .funko img {
+      max-width: 150px; /* Slightly larger image */
+      height: auto;
+      margin-bottom: 10px;
+      border-radius: 5px;
+    }
+
+    .funko h3 {
+      margin-top: 0;
+      margin-bottom: 5px;
+      font-size: 1.2rem;
+      color: #37474f;
+    }
+
+    .funko .description {
+      font-size: 0.9rem;
+      color: #555;
+      margin-bottom: 10px;
+      text-align: left; /* Align description to the left for better readability */
+    }
+
+    .funko .price {
+      font-weight: bold;
+      color: #212cfa; /* Azul marino for price */
+      margin-bottom: 10px;
+    }
+
+    .funko button {
+      background-color: #e3665d; /* Azul más oscuro */
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background-color 0.3s ease;
+    }
+
+    .funko button:hover {
+      background-color: #e88d37; /* Azul marino más intenso en hover */
+    }
+    .logo {
+  height: 50px;
+  width: auto;
+  max-width: 160px;
+  object-fit: contain;
+  margin: 0;
+}
+
+.extra-logo {
+  height: 45px;
+  width: auto;
+  max-width: 100px;
+  object-fit: contain;
+  margin: 0;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-right: 450px;
+}
+
+.sidebar-links {
+  display: flex;
+  gap: 5px;
+}
+.old-price {
+  text-decoration: line-through;
+  color: #888;
+  margin-right: 8px;
+}
+
+.oferta-label {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background-color: #e53935;
+  color: white;
+  padding: 3px 8px;
+  font-size: 0.75rem;
+  font-weight: bold;
+  border-radius: 3px;
+  z-index: 2;
+}
+
+.price-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
   </style>
 </head>
 <body>
+  
   <div class="sidebar">
+  <div class="logo-container">
+    <img src="LOGO.png" alt="Logo" class="logo">
+    <img src="Empresa.png" alt="Extra" class="extra-logo">
+  </div>
+  <div class="sidebar-links">
     <a href="index.html">¿QUIÉNES SOMOS?</a>
     <a href="pops.html">Pop's</a>
     <a href="Pagina Martha.html">Promociones</a>
     <a href="ejem.html">Encuéntranos</a>
   </div>
+</div>
   <div class="content">
-    <p><a href="index.html">Inicio</a> / <a href="Pagina Martha.html" >Promociones</a></p>
+    <p><a href="index.html">Inicio</a> / <a href="pops.html" >Promociones</a></p>
     <h1>Promociones Especiales</h1>
-    <p>Descuentos en Funko pops, todos los días a las 18:00 se actualizan nuestras promociones de Funkos</p>
-    <p>Mostrando todos los 9 resultados</p>
-    <div class="promo-grid">
-      <div class="promo-card">
-        <img src="https://i5.walmartimages.com/asr/b03aa119-1e1d-4ac8-8d15-a66f86cc21fb_1.07e23e691dcfd5223e1985c58bd5aa74.png" alt="Goku Ultra Instinct">
-        <div class="info">
-          <h2>Goku Ultra Instinct</h2>
-          <p>¡Ahora con 20% de descuento por tiempo limitado!</p>
-          <span>$399 MXN</span>
-        </div>
-      </div>
+    <p>Descuentos en Funko pops, todos los días a las 18:00 se actualizan nuestras promociones de Funkos.</p>
+    <p>Mostrando todos los resultados.</p>
+    <section id="jujutsu">
+      <h2>Funkos de Jujutsu Kaisen</h2>
+      <div class="funko-grid" id="jujutsu-funkos"></div>
+    </section>
 
-      <div class="promo-card">
-        <img src="https://http2.mlstatic.com/D_NQ_NP_879224-MLU73982343378_012024-O.webp" alt="Mandalorian Glow">
-        <div class="info">
-          <h2>Mandalorian Glow</h2>
-          <p>Versión exclusiva con luz especial. ¡Aprovecha el 15% OFF!</p>
-          <span>$459 MXN</span>
-        </div>
-      </div>
-<div class="promo-card">
-        <img src="https://th.bing.com/th/id/OIP.f3sEPkNxk_HA5f6iX40z2gHaHa?rs=1&pid=ImgDetMain" alt="Darth Vader">
-        <div class="info">
-          <h2>Darth Vader Edición Limitada</h2>
-          <p>¡Incluye caja coleccionable! Promoción válida hasta agotar existencias.</p>
-          <span>$499 MXN</span>
-        </div></div>
+    <section id="kimetsu">
+      <h2>Funkos de Kimetsu no Yaiba</h2>
+      <div class="funko-grid" id="kimetsu-funkos"></div>
+    </section>
 
-          <div class="promo-card">
-            <img src="https://66703.cdn.simplo7.net/static/66703/sku/funko-pop-disney-pixar-funko-pop-ariel-1012-a-pequena-sereia-disney-princess--p-1631302052729.jpg" alt="Goku Ultra Instinct">
-            <div class="info">
-              <h2>Funko pop Ariel 1012 – La sirenita – Disney</h2>
-              <p>Funko pop Ariel 1012 de las películas de la Sirenita de Disney.</p>
-              <span>$329 MXN</span>
-            </div>
-          </div>
-    
-          <div class="promo-card">
-            <img src="https://funkimia.com/wp-content/uploads/2023/05/funko-pop-batman-374.webp" alt="Mandalorian Glow">
-            <div class="info">
-              <h2>Funko pop Batman 374 Imperial Palace – Batman</h2>
-              <p>Funko pop Batman 374 Imperial Palace de los comics de The Batman.</p>
-              <span>$279 MXN</span>
-            </div>
-          </div>
-    
-          <div class="promo-card">
-            <img src="https://funkimia.com/wp-content/uploads/2023/12/funko-pop-shadow-285.webp" alt="Darth Vader">
-            <div class="info">
-              <h2>Funko pop Shadow 285 – Sonic the Hedgehog</h2>
-              <p>Funko pop Shadow 285 del videojuego de Sonic the Hedgehog.</p>
-              <span>$349 MXN</span>
-              </div>
-  </div>
-  <div class="promo-card">
-    <img src="https://funkimia.com/wp-content/uploads/2025/01/funko-pop-omni-man.webp" alt="Goku Ultra Instinct">
-    <div class="info">
-      <h2>Funko pop Omni-Man – Invinciblet</h2>
-      <p>Funko pop Omni-Man de los comics y caricatura de Invincible de Prime Video.</p>
-      <span>$299 MXN</span>
-    </div>
+    <section id="minecraft">
+      <h2>Funkos de Minecraft</h2>
+      <div class="funko-grid" id="minecraft-funkos"></div>
+    </section>
   </div>
 
-  <div class="promo-card">
-    <img src="https://funkimia.com/wp-content/uploads/2024/09/funko-pop-spider-gwen-1224.webp" alt="Mandalorian Glow">
-    <div class="info">
-      <h2>Funko pop Spider-Gwen 1224 – Spider-man – Marvel</h2>
-      <p>Funko pop Spider-Gwen 1224 de las películas y comics de Spider-Man del universo de Marvel.</p>
-      <span>$299 MXN</span>
-    </div>
+  <script>
+    function generarFunko(contenedorId, nombre, precio, imagenSrc, descripcion) {
+      const contenedor = document.getElementById(contenedorId);
+      const divFunko = document.createElement('div');
+      divFunko.classList.add('funko');
+      divFunko.innerHTML = `
+        <img src="${imagenSrc}" alt="${nombre}">
+        <h3>${nombre}</h3>
+        <p class="description">${descripcion}</p>
+       <div class="price-container">
+  <span class="oferta-label">Oferta</span>
+  <p class="price"><span class="old-price">$${(precio * 1.25).toFixed(2)}</span> $${precio.toFixed(2)}</p>
+</div>
+        <button>Seleccionar</button>
+      `;
+      contenedor.appendChild(divFunko);
+    }
+
+    // Datos de los Funkos con URLs de imágenes y descripciones
+    const jujutsuFunkos = [
+      { nombre: 'Funko JJK Gojo Satoru', precio: 290.00, url: 'https://rec-line.com/img/productos/467x467/889698613576.jpeg', descripcion: 'El hechicero más fuerte con sus poderosos ojos Six Eyes.' },
+      { nombre: 'Funko JJK Yuji Itadori', precio: 250.00, url: 'https://d14d9vp3wdof84.cloudfront.net/image/589816272436/image_16mnk903bl659fq997c3ha485s/-S897-FWEBP', descripcion: 'El recipiente de Ryomen Sukuna con una determinación inquebrantable.' },
+      { nombre: 'Funko JJK Megumi Fushiguro', precio: 260.50, url: 'https://www.baselunaitaly.it/wp-content/uploads/2025/02/Megumi-with-rabbit.png', descripcion: 'Un talentoso hechicero que utiliza poderosas técnicas de invocación.' },
+      { nombre: 'Funko JJK Nobara Kugisaki', precio: 275.25, url: 'https://www.distritomax.com/cdn/shop/files/9a44348d560f446dbc6f67d38baf265fxl_700x700.jpg?v=1740157739', descripcion: 'Una hechicera de carácter fuerte que lucha con martillo y clavos imbuidos de energía maldita.' },
+      { nombre: 'Funko JJK Sukuna', precio: 305.75, url: 'https://m.media-amazon.com/images/I/71-M0eCb5iL.jpg', descripcion: 'El Rey de las Maldiciones, una entidad poderosa y temida.' },
+    ];
+
+    const kimetsuFunkos = [
+      { nombre: 'Funko KNY Tanjiro Kamado', precio: 230.00, url: 'https://limitededition.mx/cdn/shop/files/4f305605-3d3a-4c49-be7b-f6780c5f2486_1024x1024.jpg?v=1742334647', descripcion: 'Un joven determinado a vengar a su familia y curar a su hermana.' },
+      { nombre: 'Funko KNY Nezuko Kamado', precio: 245.50, url: 'https://m.media-amazon.com/images/I/815m3M0yboL.jpg', descripcion: 'La hermana de Tanjiro, transformada en demonio pero con una fuerte voluntad humana.' },
+      { nombre: 'Funko KNY Zenitsu Agatsuma', precio: 255.25, url: 'https://m.media-amazon.com/images/I/81LID2dLMeL.jpg', descripcion: 'Un cazador de demonios cobarde pero poderoso cuando está inconsciente.' },
+      { nombre: 'Funko KNY Inosuke Hashibira', precio: 265.00, url: 'https://m.media-amazon.com/images/I/71WAJ50KQnL.jpg', descripcion: 'Un cazador de demonios salvaje que lucha con dos espadas.' },
+      { nombre: 'Funko KNY Giyu Tomioka', precio: 270.75, url: 'https://m.media-amazon.com/images/I/71o9gUGEMKL.jpg', descripcion: 'Un poderoso Hashira de Agua con una personalidad reservada.' },
+    ];
+
+    const minecraftFunkos = [
+      { nombre: 'Funko Minecraft Steve', precio: 220.00, url: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQDwNpcTEPIhD8tkfVAAi76C2YgpPLx1HEiJw&s', descripcion: 'El personaje jugador predeterminado, listo para la aventura y la construcción.' },
+      { nombre: 'Funko Minecraft Creeper', precio: 235.50, url: 'https://http2.mlstatic.com/D_NQ_NP_818682-MLM53884349772_022023-O.webp', descripcion: 'La criatura explosiva que acecha a los jugadores desprevenidos.' },
+      { nombre: 'Funko Minecraft Skeleton', precio: 250.25, url: 'https://cdn.gameplanet.com/wp-content/uploads/2022/09/02012957/funko-pop-minecraft-skeleton-02.jpg', descripcion: 'Una criatura nocturna de Huesos que Lanza Flechas con su Arco.' },
+      { nombre: 'Funko Minecraft Alex', precio: 225.00, url: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSwZzQYKGGR2DPTMNwK26T5T9KqoqaIuw-Gcw&s', descripcion: 'Otro personaje jugador común, a menudo visto con trenzas rojas.' },
+      { nombre: 'Funko Minecraft Pig', precio: 210.75, url: 'https://m.media-amazon.com/images/I/81iVWPHZr9L.jpg', descripcion: 'Una fuente común de alimento en el mundo de Minecraft.' },
+    ];
+
+    // Generar los Funkos dinámicamente utilizando los datos
+    jujutsuFunkos.forEach(funko => generarFunko('jujutsu-funkos', funko.nombre, funko.precio, funko.url, funko.descripcion));
+    kimetsuFunkos.forEach(funko => generarFunko('kimetsu-funkos', funko.nombre, funko.precio, funko.url, funko.descripcion));
+    minecraftFunkos.forEach(funko => generarFunko('minecraft-funkos', funko.nombre, funko.precio, funko.url, funko.descripcion));
+  </script>
+  <div id="carrito" style="
+  position: fixed;
+  top: 60px;
+  right: 20px;
+  background: white;
+  border: 1px solid #ccc;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+  padding: 15px;
+  width: 300px;
+  max-height: 80vh;
+  overflow-y: auto;
+  border-radius: 8px;
+  z-index: 999;
+">
+  <h2 style="margin-top: 0;">🛒 Carrito</h2>
+  <ul id="carrito-items" style="list-style: none; padding-left: 0;"></ul>
+  <p><strong>Total: $<span id="carrito-total">0.00</span></strong></p>
+<div style="margin-top: 15px;">
+    <button id="btn-vaciar" onclick="vaciarCarrito()" style="display: none; background: #e3665d; color: white; border: none; padding: 10px; width: 100%; margin-bottom: 10px; border-radius: 5px; cursor: pointer;">
+        🗑 Borrar 
+    </button>
+    <div id="paypal-button-container"></div>
   </div>
-<div class="promo-card">
-    <img src="https://funkimia.com/wp-content/uploads/2023/05/funko-pop-freddie-mercury-184.webp" alt="Darth Vader">
-    <div class="info">
-      <h2>Funko pop Freddie Mercury 184 con corona – Queen</h2>
-      <p>Funko pop Freddie Mercury 184 con corona integrante de la banda de rock Queen</p>
-      <span>$349 MXN</span>
-    </div></div>
-    <img style="width: 980px; height: 318px;" alt="fondo"
-src="file:///C:/Users/angel/Pictures/Screenshots/Captura%20de%20pantalla%202025-04-30%20073438.png"><br>
+  
+<script>
+  const carrito = [];
+  const carritoItems = document.getElementById('carrito-items');
+  const carritoTotal = document.getElementById('carrito-total');
+
+  document.querySelectorAll('.funko button').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const funkoElement = btn.closest('.funko');
+      const nombre = funkoElement.querySelector('h3').textContent;
+      const precio = parseFloat(funkoElement.querySelector('.price').textContent.replace('Precio: $', ''));
+      agregarAlCarrito({ nombre, precio });
+    });
+  });
+
+  function agregarAlCarrito(producto) {
+    carrito.push(producto);
+    actualizarCarrito();
+  }
+
+  function eliminarDelCarrito(index) {
+    carrito.splice(index,1);
+    actualizarCarrito();
+  }
+
+  function actualizarCarrito() {
+    carritoItems.innerHTML = '';
+    let total = 0;
+    carrito.forEach((producto, index) => {
+      total += producto.precio;
+      const li = document.createElement('li');
+      li.innerHTML = `${producto.nombre} - $${producto.precio.toFixed(2)} <button onclick="eliminarDelCarrito(${index})" style="float: right; background: red; color: white; border: none; border-radius: 4px; padding: 2px 6px; cursor: pointer;">X</button>`;
+      carritoItems.appendChild(li);
+      document.getElementById('btn-vaciar').style.display = carrito.length >= 2 ? 'block' : 'none';
+    });
+    carritoTotal.textContent = total.toFixed(2);
+document.getElementById('paypal-button-container').innerHTML = '';
+if (carrito.length > 0) {
+  cargarBotonPayPal();
+}
+
+  }
+  
+  function vaciarCarrito() {
+  carrito.length = 0;
+  actualizarCarrito();
+}
+
+// PayPal SDK
+function cargarBotonPayPal() {
+  if (typeof paypal !== "undefined") {
+    paypal.Buttons({
+      createOrder: function(data, actions) {
+        return actions.order.create({
+          purchase_units: [{
+            amount: {
+              value: carrito.reduce((sum, item) => sum + item.precio, 0).toFixed(2)
+            }
+          }]
+        });
+      },
+      onApprove: function(data, actions) {
+        return actions.order.capture().then(function(details) {
+          alert('¡Gracias por tu compra, ' + details.payer.name.given_name + '!');
+          vaciarCarrito();
+        });
+      }
+    }).render('#paypal-button-container');
+  }
+}
+
+</script>
+
+  
 </body>
 </html>

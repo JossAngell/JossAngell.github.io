@@ -55,7 +55,7 @@
 
     h1 {
       font-size: 36px;
-      color: #0056b3;
+      color: #e3665d;
       margin-bottom: 20px;
       text-shadow: 1px 1px 2px #aaa;
     }
@@ -65,7 +65,7 @@
       color: #333;
       margin-top: 30px;
       margin-bottom: 10px;
-      border-left: 5px solid #0056b3;
+      border-left: 5px solid #e3665d;
       padding-left: 10px;
     }
 
@@ -133,12 +133,12 @@
 
     .funko .price {
       font-weight: bold;
-      color: #1a237e; /* Azul marino for price */
+      color: #212cfa; /* Azul marino for price */
       margin-bottom: 10px;
     }
 
     .funko button {
-      background-color: #3f51b5; /* Azul más oscuro */
+      background-color: #e3665d; /* Azul más oscuro */
       color: white;
       border: none;
       padding: 10px 15px;
@@ -149,19 +149,52 @@
     }
 
     .funko button:hover {
-      background-color: #283593; /* Azul marino más intenso en hover */
+      background-color: #e88d37; /* Azul marino más intenso en hover */
     }
+    .logo {
+  height: 50px;
+  width: auto;
+  max-width: 160px;
+  object-fit: contain;
+  margin: 0;
+}
+
+.extra-logo {
+  height: 45px;
+  width: auto;
+  max-width: 100px;
+  object-fit: contain;
+  margin: 0;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-right: 450px;
+}
+
+.sidebar-links {
+  display: flex;
+  gap: 5px;
+}
+
   </style>
 </head>
 <body>
   
   <div class="sidebar">
+  <div class="logo-container">
+    <img src="LOGO.png" alt="Logo" class="logo">
+    <img src="Empresa.png" alt="Extra" class="extra-logo">
+  </div>
+  <div class="sidebar-links">
     <a href="index.html">¿QUIÉNES SOMOS?</a>
     <a href="pops.html">Pop's</a>
     <a href="Pagina Martha.html">Promociones</a>
     <a href="ejem.html">Encuéntranos</a>
   </div>
-
+</div>
   <div class="content">
     <p><a href="index.html">Inicio</a> / <a href="pops.html" >Pop's</a></p>
     <h1>Pop's</h1>
@@ -245,7 +278,7 @@
   <ul id="carrito-items" style="list-style: none; padding-left: 0;"></ul>
   <p><strong>Total: $<span id="carrito-total">0.00</span></strong></p>
 <div style="margin-top: 15px;">
-    <button id="btn-vaciar" onclick="vaciarCarrito()" style="display: none; background: #c62828; color: white; border: none; padding: 10px; width: 100%; margin-bottom: 10px; border-radius: 5px; cursor: pointer;">
+    <button id="btn-vaciar" onclick="vaciarCarrito()" style="display: none; background: #e3665d; color: white; border: none; padding: 10px; width: 100%; margin-bottom: 10px; border-radius: 5px; cursor: pointer;">
         🗑 Borrar 
     </button>
     <div id="paypal-button-container"></div>

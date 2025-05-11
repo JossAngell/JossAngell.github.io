@@ -129,16 +129,48 @@
   align-items: center;
   justify-content: center;
 }
+.logo {
+  height: 50px;
+  width: auto;
+  max-width: 160px;
+  object-fit: contain;
+  margin: 0;
+}
+
+.extra-logo {
+  height: 45px;
+  width: auto;
+  max-width: 100px;
+  object-fit: contain;
+  margin: 0;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-right: 450px;
+}
+
+.sidebar-links {
+  display: flex;
+  gap: 5px;
+}
   </style>
 </head>
 <body>
-  <div class="sidebar">
+<div class="sidebar">
+  <div class="logo-container">
+    <img src="LOGO.png" alt="Logo" class="logo">
+    <img src="Empresa.png" alt="Extra" class="extra-logo">
+  </div>
+  <div class="sidebar-links">
     <a href="index.html">¿QUIÉNES SOMOS?</a>
     <a href="pops.html">Pop's</a>
     <a href="Pagina Martha.html">Promociones</a>
     <a href="ejem.html">Encuéntranos</a>
   </div>
-
+</div>
   <div class="content">
     <div class="center-wrapper">
     <h1>Contáctanos</h1>
