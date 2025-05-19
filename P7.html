@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Contacto - FunkoX</title>
+  <style>
+    body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f4f4f4;
+  color: #333;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+    .sidebar {
+  width: 100%;
+  height: auto;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: #1e1e2f;
+  display: flex;
+  justify-content: center;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  z-index: 10;
+}
+
+
+.sidebar a {
+  display: inline-block;
+  color: white;
+  padding: 15px 20px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+    .sidebar a:hover {
+      background-color: #3a3a5a;
+    }
+
+    .content {
+  margin-left: 0;
+  padding-top: 80px; /* deja espacio para el menú superior */
+  padding-left: 40px;
+  padding-right: 40px;
+  background-color: #ffffff;
+  min-height: 100vh;
+  flex-grow: 1;
+}
+
+
+    h1 {
+      font-size: 36px;
+      color: #ffbd59;
+      margin-bottom: 10px;
+      text-shadow: 1px 1px 2px #aaa;
+      text-align: center;
+    }
+
+    p {
+      font-size: 18px;
+      color: #f2e0e0;
+      text-align: center;
+      max-width: 700px;
+      margin-bottom: 30px;
+    }
+
+    form {
+      width: 100%;
+      max-width: 600px;
+      background-color: #f9f9f9;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: bold;
+      color: #333;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 16px;
+    }
+
+    button {
+      background-color: #0056b3;
+      color: white;
+      border: none;
+      padding: 12px 25px;
+      font-size: 16px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      display: block;
+      margin: 0 auto;
+    }
+
+    button:hover {
+      background-color: #003f8a;
+    }
+
+    .contact-info {
+      margin-top: 40px;
+      text-align: center;
+      font-size: 16px;
+      max-width: 600px;
+    }
+
+    .contact-info p {
+      margin-bottom: 10px;
+    }
+
+    h2 {
+      font-size: 24px;
+      margin-bottom: 15px;
+      color: #0056b3;
+    }
+    .center-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.logo {
+  height: 50px;
+  width: auto;
+  max-width: 160px;
+  object-fit: contain;
+  margin: 0;
+}
+
+.extra-logo {
+  height: 45px;
+  width: auto;
+  max-width: 100px;
+  object-fit: contain;
+  margin: 0;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-right: 450px;
+}
+
+.sidebar-links {
+  display: flex;
+  gap: 5px;
+}
+/* Estilos para el pie de página */
+.footer {
+  background-color: #1e1e2f;
+  color: #ffffff;
+  padding: 40px 20px 20px 20px;
+  font-family: 'Poppins', sans-serif;
+}
+
+.footer-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.footer-column {
+  flex: 1 1 200px;
+  margin: 20px;
+}
+
+.footer-column h3,
+.footer-column h4 {
+  color: #ffbd59;
+  margin-bottom: 15px;
+}
+
+.footer-column ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-column ul li {
+  margin-bottom: 10px;
+}
+
+.footer-column ul li a {
+  color: #ffffff;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.footer-column ul li a:hover {
+  color: #e3665d;
+}
+
+.social-icons a {
+  color: #ffffff;
+  margin-right: 10px;
+  font-size: 20px;
+  transition: color 0.3s;
+}
+
+.social-icons a:hover {
+  color: #ffbd59;
+}
+
+.footer-bottom {
+  text-align: center;
+  margin-top: 20px;
+  border-top: 1px solid #444444;
+  padding-top: 10px;
+  font-size: 14px;
+  color: #bbbbbb;
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+  .footer-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .footer-column {
+    margin: 10px 0;
+    text-align: center;
+  }
+}
+.content {
+  margin-left: 0;
+  padding-top: 80px;
+  padding-left: 0;
+  padding-right: 0;
+  background-color: #ffffff;
+  flex: 1; /* <- IMPORTANTE */
+  
+}
+.hero-section {
+  height: 100vh;
+  background: linear-gradient(rgba(30, 30, 47, 0.7), rgba(30, 30, 47, 0.9)), url('https://images.unsplash.com/photo-1525783826280-5a6e928544c3?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') no-repeat center center;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: white;
+  padding-top: 80px; /* espacio para que no tape el menú */
+}
+
+.hero-content h1 {
+  font-size: 48px;
+  margin-bottom: 20px;
+  text-shadow: 2px 2px 5px #000;
+}
+
+.hero-content p {
+  font-size: 20px;
+  margin-bottom: 30px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.hero-button {
+  background-color: #ffbd59;
+  color: #1e1e2f;
+  padding: 12px 30px;
+  font-size: 18px;
+  border: none;
+  border-radius: 30px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.hero-button:hover {
+  background-color: #e3665d;
+  transform: scale(1.05);
+}
+
+  </style>
+</head>
+<body>
+<div class="sidebar">
+  <div class="logo-container">
+    <img src="LOGO.png" alt="Logo" class="logo">
+    <img src="Empresa.png" alt="Extra" class="extra-logo">
+  </div>
+  <div class="sidebar-links">
+    <a href="index.html">Inicio</a>
+    <a href="index.html">¿Quienés Somos?</a>
+    <a href="pops.html">Pop's</a>
+    <a href="Pagina Martha.html">Promociones</a>
+    <a href="ejem.html">Encuéntranos</a>
+  </div>
+</div>
+<section class="hero-section">
+  <div class="hero-content">
+    <h1>Bienvenido a FunkoX</h1>
+    <p>Explora el universo de los coleccionables Funko Pop. ¡Haz crecer tu colección hoy!</p>
+    <a href="pops.html" class="hero-button">Explorar productos</a>  
+  </div>
+</section>
+  
+  <footer class="footer">
+  <div class="footer-container">
+    <div class="footer-column">
+      <h3>FunkoX por Ángel y Karina</h3>
+      <p>Tu tienda de confianza para coleccionistas de Funko Pop en México.</p>
+    </div>
+    <div class="footer-column">
+  <h4>Categorías</h4>
+  <ul>
+    <li><a href="pops.html#jujutsu">Jujutsu</a></li>
+    <li><a href="pops.html#kimetsu">Kimetsu</a></li>
+    <li><a href="pops.html#minecraft">Minecraft</a></li>
+  </ul>
+</div>
+
+    <div class="footer-column">
+      <h4>Enlaces</h4>
+      <ul>
+        <li><a href="index.html">¿Quiénes somos?</a></li>
+        <li><a href="pops.html">Pop's</a></li>
+        <li><a href="Pagina Martha.html">Promociones</a></li>
+        <li><a href="ejem.html">Encuéntranos</a></li>
+      </ul>
+    </div>
+    <div class="footer-column">
+      <h4>Síguenos</h4>
+     <ul>
+        <li><a href="https://www.instagram.com/o.joseangelhenandez?igsh=NWE2Z21nMGJlNDh5">Instagram</a></li>
+        <li><a href="https://www.facebook.com/share/16WA8nLiBR/?mibextid=qi2Omg" >Facebook</a></li>
+    </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2025 FunkoX por Ángel y Karina. Todos los derechos reservados.</p>
+  </div>
+</footer>
+</body>
+</html>
