@@ -387,7 +387,7 @@
   border-radius: 8px;
   z-index: 999;
 ">
-  <h2 style="margin-top: 0;">🛒 Carrito</h2>
+  <h2 style="margin-top: 0;">🛒 Compras</h2>
   <ul id="carrito-items" style="list-style: none; padding-left: 0;"></ul>
   <p><strong>Total: $<span id="carrito-total">0.00</span></strong></p>
 <div style="margin-top: 15px;">
@@ -406,7 +406,10 @@
     btn.addEventListener('click', () => {
       const funkoElement = btn.closest('.funko');
       const nombre = funkoElement.querySelector('h3').textContent;
-      const precio = parseFloat(funkoElement.querySelector('.price').textContent.replace('Precio: $', ''));
+      const precioTexto = funkoElement.querySelector('.price').textContent;
+const matches = precioTexto.match(/\$([\d.]+)/g); // Encuentra todos los precios
+const precio = parseFloat(matches[matches.length - 1].replace('$', '')); // Toma el último (con descuento)
+
       agregarAlCarrito({ nombre, precio });
     });
   });
